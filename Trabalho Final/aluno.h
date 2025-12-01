@@ -7,15 +7,16 @@
 #define TAM_NOME 50
 #define TAM_CATEGORIA 50
 
-typedef struct Aluno{
-   int id;
+typedef struct{
+   int matricula;
    char nome[TAM_NOME];
-   float engajamento;
-   float desempenho;
+   float nota;
+   float aulas_assistidas;
+   float atividades_concluidas;
    char categoria[TAM_CATEGORIA];
 } aluno;
 
-aluno criar_aluno(int id, char* nome, float engajemento, float desempenho);
+aluno criar_aluno();
 
 void mostrar_aluno(aluno atual);
 
