@@ -1,17 +1,23 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -g
+CFLAGS = -Wall -Wextra -g -Iinclude
 
-SRC = $(wildcard *.c)
-OBJ = $(SRC:.c=.o)
-BIN = a.out
+SRC = $(wildcard src/*.c)
+OBJ = $(SRC:src/%.c=build/%.o)
+TARGET = build/app
 
-all: $(BIN)
+all: $(TARGET)
 
-$(BIN): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o $(BIN)
+$(TARGET): $(OBJ)
+	$(CC) $(OBJ) -o $(TARGET)
 
-clean:
-	rm -f *.o $(BIN)
+build/%.o: src/%.c
+	mkdir -p build
+	$(CC) $(CFLAGS) -c $< -o $@
 
 run: all
-	./$(BIN)
+	./$(TARGET)
+
+clean:
+	rm -rf build
+
+.PHONY: all run clean explica esse makefile todo
